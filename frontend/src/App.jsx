@@ -38,7 +38,40 @@ const sampleBugs = [
 ]
 
 function App() {
-  const [bugs] = useState(sampleBugs)
+  const [bugs, setBugs] = useState(sampleBugs)
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [formData, setFormData] = useState({
+  title: '',
+  project: '',
+  priority: 'Medium',
+  assignee: '',
+})
+
+
+const handleSubmit = (e) => {
+  e.preventDefault()
+
+  const newBug = {
+    id: `BUG-${101 + bugs.length}`,
+    title: formData.title.trim(),
+    project: formData.project.trim(),
+    priority: formData.priority,
+    status: 'Open',
+    assignee: formData.assignee.trim(),
+  }
+
+  setBugs([newBug, ...bugs])
+
+  setFormData({
+    title: '',
+    project: '',
+    priority: 'Medium',
+    assignee: '',
+  })
+
+  setIsFormOpen(false)
+}
+
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('All')
   const [priorityFilter, setPriorityFilter] = useState('All')
@@ -131,7 +164,7 @@ function App() {
                 Monitor defects, track progress, and keep your projects healthy.
               </p>
             </div>
-            <button className="primary-button" onClick={() => alert('Bug creation form coming next!')}>
+            <button className="primary-button" onClick={() => setIsFormOpen(true)}>
               <span>＋</span> Report a bug
             </button>
           </div>
@@ -254,10 +287,90 @@ function App() {
             DevTrack AI <span>·</span> Software defect management
             <span className="footer-right">Development preview</span>
           </footer>
-        </section>
-      </main>
+</section>
+</main>
+
+{isFormOpen && (
+  <div className="modal-overlay">
+    <div className="bug-form">
+      
+<h2>Report a bug</h2>
+<p>Tell us about the software defect.</p>
+
+<form className="bug-report-form" onSubmit={handleSubmit}>
+  <label>
+    Bug title
+    <input
+      type="text"
+      placeholder="e.g. Login button not working"
+      value={formData.title}
+      onChange={(e) =>
+        setFormData({ ...formData, title: e.target.value })
+      }
+      required
+    />
+  </label>
+
+  <label>
+    Project
+    <input
+      type="text"
+      placeholder="e.g. Authentication"
+      value={formData.project}
+      onChange={(e) =>
+        setFormData({ ...formData, project: e.target.value })
+      }
+      required
+    />
+  </label>
+
+  <label>
+    Priority
+    <select
+      value={formData.priority}
+      onChange={(e) =>
+        setFormData({ ...formData, priority: e.target.value })
+      }
+    >
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+  </label>
+
+  <label>
+    Assignee
+    <input
+      type="text"
+      placeholder="Who will fix this bug?"
+      value={formData.assignee}
+      onChange={(e) =>
+        setFormData({ ...formData, assignee: e.target.value })
+      }
+      required
+    />
+  </label>
+
+  <div className="form-actions">
+    <button
+      type="button"
+      onClick={() => setIsFormOpen(false)}
+    >
+      Cancel
+    </button>
+
+    <button type="submit" className="primary-button">
+      Submit Bug
+    </button>
+  </div>
+</form>
+
     </div>
-  )
+  </div>
+)}
+
+</div>
+)
 }
 
 export default App

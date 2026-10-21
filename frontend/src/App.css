@@ -760,3 +760,169 @@ tbody tr:hover {
     display: none;
   }
 }
+/* Report a bug popup */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.bug-form {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.bug-form h2 {
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.bug-form p {
+  margin: 0 0 24px;
+  color: #64748b;
+}
+
+.bug-form button {
+  padding: 10px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+
+/* Bug report form fields */
+.bug-report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.bug-report-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bug-report-form input,
+.bug-report-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #dbe2ee;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bug-report-form input::placeholder {
+  color: #94a3b8;
+}
+
+.bug-report-form input:focus,
+.bug-report-form select:focus {
+  border-color: #6554e8;
+  box-shadow: 0 0 0 3px rgba(101, 84, 232, 0.12);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-actions button {
+  padding: 11px 18px;
+  border: 1px solid #dbe2ee;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-actions .primary-button {
+  border: none;
+  background: #6554e8;
+  color: #ffffff;
+}
+
+.form-actions .primary-button:hover {
+  background: #5140d4;
+}
+
+@media (max-width: 520px) {
+  .bug-form {
+    padding: 22px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .form-actions {
+    flex-wrap: wrap;
+  }
+}
+}
+
+.bug-form .bug-report-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  width: 100%;
+}
+
+.bug-form .bug-report-form label {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bug-form .bug-report-form input,
+.bug-form .bug-report-form select {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #dbe2ee;
+  border-radius: 8px;
+  background: white;
+  color: #172033;
+  font-size: 14px;
+}
+
+.bug-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.bug-form .form-actions .primary-button {
+  background: #6554e8;
+  color: white;
+  border: none;
+}
