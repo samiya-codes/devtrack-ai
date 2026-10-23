@@ -96,7 +96,9 @@ const handleSubmit = async (e) => {
     const normalizedSearch = search.trim().toLowerCase()
     const matchesSearch =
       String(bug.title ?? '').toLowerCase().includes(normalizedSearch) ||
-      String(bug.id ?? '').toLowerCase().includes(normalizedSearch)
+      String(bug.id ?? '').toLowerCase().includes(normalizedSearch) ||
+      String(bug.project ?? '').toLowerCase().includes(normalizedSearch) ||
+      String(bug.assignee ?? '').trim().toLowerCase().includes(normalizedSearch)
 
     const matchesStatus =
       statusFilter === 'All' || bug.status === statusFilter
@@ -353,7 +355,7 @@ const handleSubmit = async (e) => {
                 <span>⌕</span>
                 <input
                   aria-label="Search bug reports"
-                  placeholder="Search by title or bug ID..."
+                  placeholder="Search by title, ID, project, or assignee..."
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                 />
@@ -480,7 +482,7 @@ const handleSubmit = async (e) => {
                       <span>⌕</span>
                       <input
                         aria-label="Search project bugs"
-                        placeholder="Search by title or bug ID..."
+                        placeholder="Search by title, ID, project, or assignee..."
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
                       />
